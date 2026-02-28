@@ -131,11 +131,11 @@ function makeChart(id, config) {
 // ══════════════════════════════════════════════════════════════
 const SECTION_LABELS = {
   dashboard: 'System Overview',
-  destinations: 'Module 1 — Destination Database',
-  recommend: 'Module 2 — Recommendation Engine',
-  forecast: 'Module 3 — Forecast Engine',
-  optimize: 'Module 4 — Itinerary Optimizer',
-  reports: 'Module 5 — Analytics Reports',
+  destinations: 'Destination Database',
+  recommend: 'Recommendation Engine',
+  forecast: 'Forecast Engine',
+  optimize: 'Itinerary Optimizer',
+  reports: 'Analytics Reports',
 };
 
 function navigate(sectionId) {
