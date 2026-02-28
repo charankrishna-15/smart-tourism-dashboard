@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Tourism Recommendation &amp; Planning System</title>
+    <meta name="description"
+        content="Intelligent tourism planner with K-Means clustering, seasonal forecasting, and TSP itinerary optimization." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- SIDEBAR NAV -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <span class="logo-icon">&#9992;&#65039;</span>
+            <span class="logo-text">Tour Planner</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard" id="nav-dashboard">
+                <span class="nav-icon">&#127968;</span><span class="nav-label">Overview</span>
+            </a>
+            <a href="#" class="nav-item" data-section="destinations" id="nav-destinations">
+                <span class="nav-icon">&#128506;&#65039;</span><span class="nav-label">Destination DB</span>
+            </a>
+            <a href="#" class="nav-item" data-section="recommend" id="nav-recommend">
+                <span class="nav-icon">&#127919;</span><span class="nav-label">Recommendation</span>
+            </a>
+            <a href="#" class="nav-item" data-section="forecast" id="nav-forecast">
+                <span class="nav-icon">&#128200;</span><span class="nav-label">Forecast Engine</span>
+            </a>
+            <a href="#" class="nav-item" data-section="optimize" id="nav-optimize">
+                <span class="nav-icon">&#9889;</span><span class="nav-label">Optimizer</span>
+            </a>
+            <a href="#" class="nav-item" data-section="reports" id="nav-reports">
+                <span class="nav-icon">&#128202;</span><span class="nav-label">Analytics Report</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-badge">Java + H2 + ML</div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">&#9776;</button>
+                <div class="breadcrumb" id="breadcrumb">Overview</div>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-date" id="topbarDate"></div>
+                <div class="topbar-avatar">TI</div>
+            </div>
+        </header>
+
+        <!-- SECTION: OVERVIEW (Dashboard) -->
+        <section class="section active" id="section-dashboard">
+            <div class="section-header">
+                <h1>System Overview</h1>
+                <p>K-Means Clustering &middot; Seasonal Trend Forecasting &middot; TSP Route Optimization &middot; H2
+                    Destination Database</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="--accent:#6c5ce7">
+                    <div class="stat-icon">&#127758;</div>
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">Destinations in Database</div>
+                    <div class="stat-trend">+9 added this month</div>
+                </div>
+                <div class="stat-card" style="--accent:#fd79a8">
+                    <div class="stat-icon">&#128100;</div>
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Registered Tourist Profiles</div>
+                    <div class="stat-trend">+1 registered this week</div>
+                </div>
+                <div class="stat-card" style="--accent:#00b894">
+                    <div class="stat-icon">&#128203;</div>
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Optimized Itineraries Built</div>
+                    <div class="stat-trend">Optimization score: 65/100</div>
+                </div>
+                <div class="stat-card" style="--accent:#fdcb6e">
+                    <div class="stat-icon">&#128302;</div>
+                    <div class="stat-value">60K</div>
+                    <div class="stat-label">Goa Peak Season Forecast</div>
+                    <div class="stat-trend">&#128200; Growing yearly trend</div>
+                </div>
+            </div>
+
+            <div class="dash-grid-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Destination Ratings</h3>
+                        <span class="badge" title="Double-click to maximize">Top 8</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="ratingsChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>K-Means Cluster Map</h3>
+                        <span class="badge" title="Double-click to maximize">k = 4 Clusters</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="clusterChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Travel Style Distribution</h3>
+                        <span class="badge" title="Double-click to maximize">All 30 Destinations</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="styleChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Tourist Budget vs Trip Days</h3>
+                        <span class="badge" title="Double-click to maximize">6 Profiles</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="budgetChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DESTINATION DB (Module 1) -->
+        <section class="section" id="section-destinations">
+            <div class="section-header">
+                <h1>Module 1 &mdash; Destination Database</h1>
+                <p>All stored destinations with ratings, climate type, daily cost, seasonal windows and activity tags
+                    (H2 in-memory DB)</p>
+            </div>
+            <div class="filter-bar">
+                <input type="text" id="destSearch" class="search-input"
+                    placeholder="&#128269; Search by name or country..." />
+                <select id="destClimateFilter" class="filter-select">
+                    <option value="">All Climate Types</option>
+                    <option value="tropical">&#127796; Tropical</option>
+                    <option value="temperate">&#127807; Temperate</option>
+                    <option value="arctic">&#10052;&#65039; Arctic</option>
+                    <option value="arid">&#127964;&#65039; Arid</option>
+                </select>
+                <select id="destStyleFilter" class="filter-select">
+                    <option value="">All Travel Styles</option>
+                    <option value="adventure">&#129495; Adventure</option>
+                    <option value="cultural">&#127963;&#65039; Cultural</option>
+                    <option value="relaxation">&#129336; Relaxation</option>
+                    <option value="eco">&#127807; Eco</option>
+                </select>
+            </div>
+            <div class="dest-grid" id="destGrid"></div>
+        </section>
+
+        <!-- SECTION: RECOMMENDATION ENGINE (Module 2) -->
+        <section class="section" id="section-recommend">
+            <div class="section-header">
+                <h1>Module 2 &mdash; Recommendation Engine</h1>
+                <p>K-Means++ clustering groups destinations into 4 clusters &middot; Content-based similarity scores
+                    rank the best matches per tourist preference</p>
+            </div>
+            <div class="two-col">
+                <div class="card form-card">
+                    <h3>Tourist Preference Input</h3>
+                    <div class="form-group">
+                        <label>Tourist Name</label>
+                        <input type="text" id="rec-name" class="form-input" value="Alice Johnson" />
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Climate Type</label>
+                        <select id="rec-climate" class="form-input">
+                            <option value="tropical">&#127796; Tropical</option>
+                            <option value="temperate">&#127807; Temperate</option>
+                            <option value="arctic">&#10052;&#65039; Arctic</option>
+                            <option value="arid">&#127964;&#65039; Arid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Travel Style</label>
+                        <select id="rec-style" class="form-input">
+                            <option value="relaxation">&#129336; Relaxation</option>
+                            <option value="adventure">&#129495; Adventure</option>
+                            <option value="cultural">&#127963;&#65039; Cultural</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Trip Budget (INR): <strong id="rec-budget-val">₹100,000</strong></label>
+                        <input type="range" id="rec-budget" min="20000" max="450000" step="5000" value="100000"
+                            class="slider" />
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Trip Duration (Days): <strong id="rec-days-val">14</strong></label>
+                        <input type="range" id="rec-days" min="3" max="30" value="14" class="slider" />
+                    </div>
+                    <div class="form-group">
+                        <label>Planned Travel Month</label>
+                        <select id="rec-month" class="form-input">
+                            <option value="1">January</option>
+                            <option value="2" selected>February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="recBtn" onclick="runRecommendation()">
+                        <span>&#127919; Get Recommendations</span>
+                    </button>
+                </div>
+
+                <div class="card">
+                    <h3>Top Recommended Destinations</h3>
+                    <div id="recResults" class="rec-results">
+                        <div class="placeholder-msg">Fill in tourist preferences and click "Get Recommendations"</div>
+                    </div>
+                    <div class="chart-wrap" style="margin-top:10px;"><canvas id="recChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FORECAST ENGINE (Module 3) -->
+        <section class="section" id="section-forecast">
+            <div class="section-header">
+                <h1>Module 3 &mdash; Seasonal Forecast Engine</h1>
+                <p>Linear regression models year-over-year visitor growth &middot; Seasonal index identifies peak and
+                    low-demand months for each destination</p>
+            </div>
+            <div class="filter-bar">
+                <select id="forecastDest" class="filter-select" onchange="updateForecast()">
+                    <option value="taj">Taj Mahal, Agra</option>
+                    <option value="goa">Goa, India</option>
+                    <option value="ladakh">Leh Ladakh, India</option>
+                </select>
+            </div>
+
+            <div class="stats-grid forecast-stats" id="forecastStats"></div>
+
+            <div class="dash-grid">
+                <div class="card" style="grid-column:1/-1">
+                    <div class="card-header">
+                        <h3 id="forecastTitle">Taj Mahal, Agra &mdash; Seasonal Visitor Trend</h3>
+                        <span class="badge" id="forecastBadge">&#128200; Growing</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="forecastChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Monthly Average Visitor Count (Historical 2022-24)</h3>
+                    </div>
+                    <div class="chart-wrap"><canvas id="monthlyAvgChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Seasonal Index per Month (Relative to Annual Average)</h3>
+                    </div>
+                    <div class="chart-wrap"><canvas id="seasonalIndexChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: OPTIMIZER (Module 4) -->
+        <section class="section" id="section-optimize">
+            <div class="section-header">
+                <h1>Module 4 &mdash; Itinerary Optimizer</h1>
+                <p>Greedy algorithm selects destinations within budget &middot; Nearest-neighbour TSP heuristic
+                    minimises total travel distance</p>
+            </div>
+            <div class="two-col">
+                <div class="card form-card">
+                    <h3>Build Optimized Itinerary</h3>
+                    <div class="form-group">
+                        <label>Select Tourist Profile</label>
+                        <select id="opt-tourist" class="form-input" onchange="updateOptTourist()">
+                            <option value="0">Charan &mdash; Budget ₹100,000 / 14 days</option>
+                            <option value="1">Jahnavi &mdash; Budget ₹240,000 / 21 days</option>
+                            <option value="2">Deekshitha &mdash; Budget ₹150,000 / 10 days</option>
+                            <option value="3">Anil &mdash; Budget ₹180,000 / 18 days</option>
+                            <option value="4">Dinesh &mdash; Budget ₹270,000 / 28 days</option>
+                            <option value="5">Irshad &mdash; Budget ₹225,000 / 14 days</option>
+                            <option value="6">Harsha &mdash; Budget ₹120,000 / 12 days</option>
+                            <option value="7">Shankar &mdash; Budget ₹195,000 / 15 days</option>
+                            <option value="8">Abhinay &mdash; Budget ₹165,000 / 20 days</option>
+                            <option value="9">Rafi &mdash; Budget ₹255,000 / 25 days</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Trip Start Date</label>
+                        <input type="date" id="opt-date" class="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <label>Select Candidate Destinations (pick 3&ndash;8)</label>
+                        <div id="destCheckboxes" class="checkbox-grid"></div>
+                    </div>
+                    <button class="btn-primary" onclick="runOptimization()">&#9889; Run TSP Optimization</button>
+                </div>
+
+                <div class="card">
+                    <h3>Optimized Travel Route</h3>
+                    <div id="optResults">
+                        <div class="placeholder-msg">Select a tourist profile and candidate destinations, then click
+                            "Run TSP Optimization"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="optChartCard" style="display:none; margin-top:12px">
+                <div class="card-header">
+                    <h3>Cost &amp; Days Breakdown per Stop</h3>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                    <canvas id="optCostChart" height="140"></canvas>
+                    <canvas id="optDaysChart" height="140"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ANALYTICS REPORT (Module 5) -->
+        <section class="section" id="section-reports">
+            <div class="section-header">
+                <h1>Module 5 &mdash; Analytics Reports</h1>
+                <p>Visual analytics across all modules &mdash; cost vs rating scatter, climate distribution, full
+                    destination comparison table</p>
+            </div>
+
+            <div class="dash-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Cost per Day vs Destination Rating</h3><span class="badge"
+                            title="Double-click to maximize">All 30 Destinations</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="scatterChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Climate Type Distribution</h3><span class="badge" title="Double-click to maximize">By
+                            Destination Count</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="climateChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Destinations &mdash; Full Comparison Table</h3>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table" id="destTable"></table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Generated Report Files</h3><span class="badge" title="Double-click to maximize">./reports/
+                        folder</span>
+                </div>
+                <div class="report-files" id="reportFiles"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
