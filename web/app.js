@@ -847,6 +847,19 @@ function runOptimization() {
   if (dlBtn) dlBtn.style.display = 'flex';
 }
 
+function downloadItinerary() {
+  if (!window.currentItineraryCSV) return;
+  const blob = new Blob([window.currentItineraryCSV], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'optimized_itinerary.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 // ══════════════════════════════════════════════════════════════
 // MODULE 5: REPORTS
 // ══════════════════════════════════════════════════════════════
