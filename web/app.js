@@ -571,6 +571,21 @@ function updateForecast() {
 function showOptError(msg) {
   const c = document.getElementById('optResults');
   c.innerHTML = `<div class="placeholder-msg" style="color:#ff6b6b;border-color:rgba(255,107,107,0.3)">⚠️ ${msg}</div>`;
+  const btn = document.getElementById('downloadItineraryBtn');
+  if (btn) btn.style.display = 'none';
+}
+
+function downloadItinerary() {
+  if (!window.currentItineraryCSV) return;
+  const blob = new Blob([window.currentItineraryCSV], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'optimized_itinerary.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 function updateOptTourist() {
@@ -818,6 +833,18 @@ function runOptimization() {
       plugins: { legend: { position: 'right', labels: { font: { size: 10 } } } }
     },
   });
+
+  // ── Build CSV Data ──────────────────────────────────────────
+  let csv = "Stop Number,Destination,Country,Days Spent,Cost per Day (INR),Stop Total (INR)\n";
+  stops.forEach((st, i) => {
+    csv += `${i + 1},"${st.dest.name}","${st.dest.country}",${st.days},${st.dest.cost},${st.cost}\n`;
+  });
+  csv += `\nTotal,,,"${totalDays} days",,"${totalCost}"\n`;
+  csv += `Score,,,"${score}/100",,\n`;
+
+  window.currentItineraryCSV = csv;
+  const dlBtn = document.getElementById('downloadItineraryBtn');
+  if (dlBtn) dlBtn.style.display = 'flex';
 }
 
 // ══════════════════════════════════════════════════════════════
