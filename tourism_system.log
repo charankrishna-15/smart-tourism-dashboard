@@ -1,0 +1,384 @@
+2026-02-27 18:55:18 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-27 18:55:18 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-27 18:55:18 [ERROR] com.tourism.db.DatabaseManager - Failed to initialize database
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "    CREATE TABLE IF NOT EXISTS seasonal_data (\000a        id                      INT AUTO_INCREMENT PRIMARY KEY,\000a        destination_id          INT  NOT NULL,\000a        [*]year                    INT  NOT NULL,\000a        month                   INT  NOT NULL,\000a        visitor_count           INT  DEFAULT 0,\000a        avg_temperature_celsius DOUBLE,\000a        avg_precipitation_mm    DOUBLE,\000a        FOREIGN KEY (destination_id) REFERENCES destinations(id)\000a    )\000a"; expected "identifier"; SQL statement:
+    CREATE TABLE IF NOT EXISTS seasonal_data (
+        id                      INT AUTO_INCREMENT PRIMARY KEY,
+        destination_id          INT  NOT NULL,
+        year                    INT  NOT NULL,
+        month                   INT  NOT NULL,
+        visitor_count           INT  DEFAULT 0,
+        avg_temperature_celsius DOUBLE,
+        avg_precipitation_mm    DOUBLE,
+        FOREIGN KEY (destination_id) REFERENCES destinations(id)
+    )
+ [42001-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.getSyntaxError(DbException.java:261)
+	at org.h2.command.Parser.readIdentifier(Parser.java:5533)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8994)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939)
+	at org.h2.command.Parser.parseCreate(Parser.java:6404)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.tourism.db.DatabaseManager.initializeSchema(DatabaseManager.java:84)
+	at com.tourism.db.DatabaseManager.<init>(DatabaseManager.java:27)
+	at com.tourism.db.DatabaseManager.getInstance(DatabaseManager.java:36)
+	at com.tourism.main.TourismApp.main(TourismApp.java:35)
+2026-02-27 18:55:18 [ERROR] com.tourism.main.TourismApp - Application error
+java.lang.RuntimeException: Database initialization failed
+	at com.tourism.db.DatabaseManager.<init>(DatabaseManager.java:30)
+	at com.tourism.db.DatabaseManager.getInstance(DatabaseManager.java:36)
+	at com.tourism.main.TourismApp.main(TourismApp.java:35)
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "    CREATE TABLE IF NOT EXISTS seasonal_data (\000a        id                      INT AUTO_INCREMENT PRIMARY KEY,\000a        destination_id          INT  NOT NULL,\000a        [*]year                    INT  NOT NULL,\000a        month                   INT  NOT NULL,\000a        visitor_count           INT  DEFAULT 0,\000a        avg_temperature_celsius DOUBLE,\000a        avg_precipitation_mm    DOUBLE,\000a        FOREIGN KEY (destination_id) REFERENCES destinations(id)\000a    )\000a"; expected "identifier"; SQL statement:
+    CREATE TABLE IF NOT EXISTS seasonal_data (
+        id                      INT AUTO_INCREMENT PRIMARY KEY,
+        destination_id          INT  NOT NULL,
+        year                    INT  NOT NULL,
+        month                   INT  NOT NULL,
+        visitor_count           INT  DEFAULT 0,
+        avg_temperature_celsius DOUBLE,
+        avg_precipitation_mm    DOUBLE,
+        FOREIGN KEY (destination_id) REFERENCES destinations(id)
+    )
+ [42001-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.getSyntaxError(DbException.java:261)
+	at org.h2.command.Parser.readIdentifier(Parser.java:5533)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8994)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939)
+	at org.h2.command.Parser.parseCreate(Parser.java:6404)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.tourism.db.DatabaseManager.initializeSchema(DatabaseManager.java:84)
+	at com.tourism.db.DatabaseManager.<init>(DatabaseManager.java:27)
+	... 2 common frames omitted
+2026-02-27 18:55:18 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-27 18:55:18 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-27 18:55:18 [ERROR] com.tourism.db.DatabaseManager - Failed to initialize database
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "    CREATE TABLE IF NOT EXISTS seasonal_data (\000a        id                      INT AUTO_INCREMENT PRIMARY KEY,\000a        destination_id          INT  NOT NULL,\000a        [*]year                    INT  NOT NULL,\000a        month                   INT  NOT NULL,\000a        visitor_count           INT  DEFAULT 0,\000a        avg_temperature_celsius DOUBLE,\000a        avg_precipitation_mm    DOUBLE,\000a        FOREIGN KEY (destination_id) REFERENCES destinations(id)\000a    )\000a"; expected "identifier"; SQL statement:
+    CREATE TABLE IF NOT EXISTS seasonal_data (
+        id                      INT AUTO_INCREMENT PRIMARY KEY,
+        destination_id          INT  NOT NULL,
+        year                    INT  NOT NULL,
+        month                   INT  NOT NULL,
+        visitor_count           INT  DEFAULT 0,
+        avg_temperature_celsius DOUBLE,
+        avg_precipitation_mm    DOUBLE,
+        FOREIGN KEY (destination_id) REFERENCES destinations(id)
+    )
+ [42001-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.getSyntaxError(DbException.java:261)
+	at org.h2.command.Parser.readIdentifier(Parser.java:5533)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8994)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939)
+	at org.h2.command.Parser.parseCreate(Parser.java:6404)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.tourism.db.DatabaseManager.initializeSchema(DatabaseManager.java:84)
+	at com.tourism.db.DatabaseManager.<init>(DatabaseManager.java:27)
+	at com.tourism.db.DatabaseManager.getInstance(DatabaseManager.java:36)
+	at com.tourism.main.TourismApp.main(TourismApp.java:164)
+2026-02-27 18:56:19 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-27 18:56:19 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-27 18:56:19 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-27 18:56:19 [INFO ] com.tourism.service.DataSeeder - Seeding database with sample data...
+2026-02-27 18:56:19 [INFO ] com.tourism.service.DataSeeder - Seeded 12 destinations.
+2026-02-27 18:56:19 [INFO ] com.tourism.service.DataSeeder - Seeded 6 tourists.
+2026-02-27 18:56:19 [INFO ] com.tourism.service.DataSeeder - Seeded seasonal data for 3 destinations × 3 years.
+2026-02-27 18:56:19 [INFO ] com.tourism.service.DataSeeder - Database seeding complete.
+2026-02-27 18:56:19 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Alice Johnson (month=2)
+2026-02-27 18:56:19 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 12 destinations with k=4
+2026-02-27 18:56:20 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-27 18:56:20 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-27 18:56:20 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-27 18:56:20 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Alice Johnson with 5 candidates
+2026-02-27 18:56:20 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=1 for tourist id=1
+2026-02-27 18:56:20 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, $2300 total, 21406km travel, score=65.0
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_1.png
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_1.png
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Alice_Johnson.png
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-27 18:56:20 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-27 18:56:21 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-27 18:56:21 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-27 21:15:45 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-27 21:15:45 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-27 21:15:45 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-27 21:15:45 [INFO ] com.tourism.service.DataSeeder - Seeding database with sample data...
+2026-02-27 21:15:45 [INFO ] com.tourism.service.DataSeeder - Seeded 17 destinations.
+2026-02-27 21:15:45 [INFO ] com.tourism.service.DataSeeder - Seeded 6 tourists.
+2026-02-27 21:15:45 [INFO ] com.tourism.service.DataSeeder - Seeded seasonal data for 3 destinations × 3 years.
+2026-02-27 21:15:45 [INFO ] com.tourism.service.DataSeeder - Database seeding complete.
+2026-02-27 21:15:45 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Alice Johnson (month=2)
+2026-02-27 21:15:45 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 17 destinations with k=4
+2026-02-27 21:15:45 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-27 21:15:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-27 21:15:45 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-27 21:15:45 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Alice Johnson with 5 candidates
+2026-02-27 21:15:45 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=1 for tourist id=1
+2026-02-27 21:15:45 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, $2820 total, 22485km travel, score=80.0
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_1.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_1.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Alice_Johnson.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-27 21:15:46 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-27 21:15:46 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-27 21:55:22 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-27 21:55:22 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-27 21:55:22 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-27 21:55:22 [INFO ] com.tourism.service.DataSeeder - Database already seeded. Skipping.
+2026-02-27 21:55:22 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Alice Johnson (month=2)
+2026-02-27 21:55:22 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 17 destinations with k=4
+2026-02-27 21:55:22 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-27 21:55:22 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-27 21:55:22 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-27 21:55:22 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Alice Johnson with 5 candidates
+2026-02-27 21:55:22 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=2 for tourist id=1
+2026-02-27 21:55:22 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, $2820 total, 22485km travel, score=80.0
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_1.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_1.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Alice_Johnson.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-27 21:55:23 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-27 21:55:23 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-28 18:01:45 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-28 18:01:45 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-28 18:01:45 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-28 18:01:45 [INFO ] com.tourism.service.DataSeeder - Seeding database with sample data...
+2026-02-28 18:01:45 [INFO ] com.tourism.service.DataSeeder - Seeded 20 destinations.
+2026-02-28 18:01:45 [INFO ] com.tourism.service.DataSeeder - Seeded 10 tourists.
+2026-02-28 18:01:45 [INFO ] com.tourism.service.DataSeeder - Seeded seasonal data for 3 Indian destinations × 3 years.
+2026-02-28 18:01:45 [INFO ] com.tourism.service.DataSeeder - Database seeding complete.
+2026-02-28 18:01:45 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Abhinay (month=2)
+2026-02-28 18:01:45 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 20 destinations with k=4
+2026-02-28 18:01:45 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 18
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 20
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-28 18:01:45 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 19
+2026-02-28 18:01:45 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-28 18:01:46 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Abhinay with 5 candidates
+2026-02-28 18:01:46 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=1 for tourist id=9
+2026-02-28 18:01:46 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, ?3420 total, 3831km travel, score=70.0
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_9.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_9.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Abhinay.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-28 18:01:47 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-28 18:01:47 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-28 18:06:19 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-28 18:06:19 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-28 18:06:19 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-28 18:06:19 [INFO ] com.tourism.service.DataSeeder - Database already seeded. Skipping.
+2026-02-28 18:06:19 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Abhinay (month=2)
+2026-02-28 18:06:19 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 20 destinations with k=4
+2026-02-28 18:06:19 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 18
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 20
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-28 18:06:19 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 19
+2026-02-28 18:06:19 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-28 18:06:19 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Abhinay with 5 candidates
+2026-02-28 18:06:20 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=2 for tourist id=9
+2026-02-28 18:06:20 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, ?3420 total, 3831km travel, score=70.0
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_9.png
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_9.png
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Abhinay.png
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-28 18:06:20 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-28 18:06:21 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-28 18:06:21 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-28 18:11:47 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-28 18:11:47 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-28 18:11:47 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-28 18:11:47 [INFO ] com.tourism.service.DataSeeder - Seeding database with sample data...
+2026-02-28 18:11:47 [INFO ] com.tourism.service.DataSeeder - Seeded 30 destinations.
+2026-02-28 18:11:47 [INFO ] com.tourism.service.DataSeeder - Seeded 10 tourists.
+2026-02-28 18:11:47 [INFO ] com.tourism.service.DataSeeder - Seeded seasonal data for 3 Indian destinations × 3 years.
+2026-02-28 18:11:47 [INFO ] com.tourism.service.DataSeeder - Database seeding complete.
+2026-02-28 18:11:47 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Abhinay (month=2)
+2026-02-28 18:11:47 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 30 destinations with k=4
+2026-02-28 18:11:47 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 24
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 23
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 28
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 30
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 18
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 22
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 27
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 29
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 20
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 21
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 25
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 19
+2026-02-28 18:11:47 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 26
+2026-02-28 18:11:47 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-28 18:11:47 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Abhinay with 5 candidates
+2026-02-28 18:11:47 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=1 for tourist id=9
+2026-02-28 18:11:47 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, ?3390 total, 1263km travel, score=70.0
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_9.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_9.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Abhinay.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-28 18:11:48 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-28 18:11:48 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
+2026-02-28 18:21:41 [INFO ] com.tourism.db.DatabaseManager - Connected to H2 database: jdbc:h2:./tourism_db;AUTO_SERVER=TRUE
+2026-02-28 18:21:41 [INFO ] com.tourism.db.DatabaseManager - Initializing database schema...
+2026-02-28 18:21:41 [INFO ] com.tourism.db.DatabaseManager - Schema initialized successfully.
+2026-02-28 18:21:41 [INFO ] com.tourism.service.DataSeeder - Seeding database with sample data...
+2026-02-28 18:21:41 [INFO ] com.tourism.service.DataSeeder - Seeded 30 destinations.
+2026-02-28 18:21:41 [INFO ] com.tourism.service.DataSeeder - Seeded 10 tourists.
+2026-02-28 18:21:41 [INFO ] com.tourism.service.DataSeeder - Seeded seasonal data for 3 Indian destinations × 3 years.
+2026-02-28 18:21:41 [INFO ] com.tourism.service.DataSeeder - Database seeding complete.
+2026-02-28 18:21:41 [INFO ] c.t.service.RecommendationService - Generating recommendations for tourist: Abhinay (month=2)
+2026-02-28 18:21:41 [INFO ] c.t.service.RecommendationService - Running K-Means++ clustering on 30 destinations with k=4
+2026-02-28 18:21:41 [INFO ] c.t.service.RecommendationService - Clustering complete — 4 clusters formed.
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 24
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 3
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 4
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 9
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 12
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 16
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 23
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 28
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 30
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 7
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 10
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 11
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 13
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 18
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 22
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 27
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 29
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 6
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 8
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 14
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 15
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 20
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 21
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 25
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 17
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 19
+2026-02-28 18:21:41 [WARN ] com.tourism.service.ForecastService - Insufficient data to forecast for destination 26
+2026-02-28 18:21:41 [INFO ] c.t.service.RecommendationService - Top 5 recommendations generated.
+2026-02-28 18:21:41 [INFO ] c.t.service.OptimizationService - Building optimized itinerary for Abhinay with 5 candidates
+2026-02-28 18:21:41 [INFO ] com.tourism.db.ItineraryDAO - Saved itinerary id=1 for tourist id=9
+2026-02-28 18:21:41 [INFO ] c.t.service.OptimizationService - Itinerary built: 5 stops, ?98400 total, 2102km travel, score=85.0
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Cost chart saved: reports/itinerary_cost_9.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Days allocation chart saved: reports/itinerary_days_9.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Ratings chart saved: reports/destination_ratings.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Recommendation chart saved: reports/recommendations_Abhinay.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_1.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_2.png
+2026-02-28 18:21:42 [INFO ] com.tourism.report.ReportGenerator - Seasonal trend chart saved: reports/seasonal_trend_5.png
+2026-02-28 18:21:43 [INFO ] com.tourism.db.DatabaseManager - Database connection closed.
